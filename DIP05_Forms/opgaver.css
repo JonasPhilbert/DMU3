@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster+Two');
+
+* {
+    font-family: 'Lobster Two', cursive;
+}
+
+.red {
+    color: red;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+h2 {
+    color: blue;
+}
+
+ul {
+    width: fit-content;
+}
