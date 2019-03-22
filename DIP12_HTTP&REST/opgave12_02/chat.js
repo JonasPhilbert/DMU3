@@ -22,7 +22,7 @@ domMessage.addEventListener("keypress", e => {
 })
 
 function getChatMessages(room) {
-    return fetch(srcMessages + room).then(response => response.json())
+    return fetch(srcMessages + room).then(response => response.json());
 }
 
 function updateChat() {
@@ -39,7 +39,9 @@ function updateChat() {
                 }
             }
         }
-    }).then(() => {updateChat()});
+    }).then(() => {
+        setTimeout(updateChat, 500);
+    });
 }
 
 function sendChatMessage(name, room, text) {
