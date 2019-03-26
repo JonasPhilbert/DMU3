@@ -19,7 +19,7 @@ const server = http.createServer((request, response) => {
                 if (/.+\.jpg/.test(file)) {
                     dias += `<img src="${file}"><br>`;
                 }
-            }    
+            }
             response.writeHead(200, {"Content-Type": "text/html"});
             response.write(dias);
             response.end();
