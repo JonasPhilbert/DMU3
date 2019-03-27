@@ -11,5 +11,5 @@ fetch(url, {
     body: JSON.stringify(body),
     header: { "Content-Type": "application/json" }
 })
-    .then((res) => res.json())
-    .then((json) => console.log(json));
+    .then(res => res.json())
+    .then(json => console.log(json));

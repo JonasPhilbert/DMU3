@@ -1,4 +1,5 @@
 const express = require("express");
+const chalk = require("chalk");
 const Message = require("./Message");
 const app = express();
 
@@ -14,9 +15,7 @@ let messages = [
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.send("DIP14 Message Server");
-});
+app.use(express.static("static"));
 
 app.get("/messages", (req, res) => {
     res.send(messages);
@@ -27,39 +26,41 @@ app.get("/messages/:id", (req, res) => {
     if (message.length > 0) {
         res.send(message);
     } else {
-        res.status(404).send({
-            message: `No such message with id: ${req.params.id}`
-        });
+        res.status(404).send({status: `No such message with id: ${req.params.id}`});
         //res.sendStatus(418); // I'm a teapot.
     }
 });
 
 app.post("/messages", (req, res) => {
-    if (!req.body.message) {
-        return res.status(400).send({ message: "A message must be provided." });
-    }
-
-    if (req.body.message === "") {
-        return res
-            .status(400)
-            .send({ message: "Empty messages are not allowed." });
-    }
+    if (!req.body.message || req.body.message === "") return res.status(400).send({status: "Empty messages are not allowed."});
 
     let msg = new Message(req.body.message);
     messages.push(msg);
-    return res.send({
-        message: `Message ${msg.id} added with content: ${msg.message}`
-    });
+    return res.send({status: `Message ${msg.id} added with content: ${msg.message}`});
 });
 
 app.put("/messages/:id", (req, res) => {
-    // Update message.
+    if (!req.body.message || req.body.message === "") return res.status(400).send({status: "Empty messages are not allowed."});
+    
+    let msg = messages.find(e => e.id == req.params.id);
+    if (!msg) return res.status(400).send({status: `No such message with id: ${req.params.id}`});
+
+    msg.message = req.body.message;
+    return res.send({status: `Message ${msg.id} updated with text: ${msg.message}`});
 });
 
-app.put("/messages/:id", (req, res) => {
-    // Delete message.
+app.delete("/messages/:id", (req, res) => {
+    for (let i = 0; i < messages.length; i++) {
+        if (messages[i].id == req.params.id) {
+            let msg = messages[i];
+            messages.splice(i, 1);
+            return res.send({status: `Removed message ${msg.id} with text: ${msg.message}`});
+        }
+    }
+
+    res.status(400).send({message: `No such message with id: ${req.params.id}`});
 });
 
 app.listen(port);
 
-console.log("Server running at http://localhost:%d", port);
+console.log("Server running at: " + chalk.blue.bold(`http://localhost:${port}`));

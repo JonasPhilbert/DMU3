@@ -4,6 +4,7 @@
   "description": "",
   "main": "expressserver.js",
   "dependencies": {
+    "chalk": "^2.4.2",
     "express": "^4.16.4",
     "node-fetch": "^2.3.0"
   },
