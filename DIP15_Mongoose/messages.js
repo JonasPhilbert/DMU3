@@ -2,6 +2,7 @@ let messages = {};
 
 const Message = require("./Message");
 const mongoose = require("mongoose");
+
 mongoose.connect(
     "mongodb+srv://jonas:1234@dmu3-4gzrm.mongodb.net/dip15?retryWrites=true",
     { useNewUrlParser: true }
