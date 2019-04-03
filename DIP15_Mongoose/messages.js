@@ -22,11 +22,21 @@ db.once("open", () => {
         });
 });
 
+// DB Done
+
 messages.addMessage = function(text, callback) {
     let message = new Message({ serial: ++messages.serial, message: text });
     message.save((err, m) => {
         if (err) return console.log("Message.save error: " + err);
         console.log(`Added message ${m.serial}: ${m.message}`);
+        callback(m);
+    });
+};
+
+message.updateMessage = function(message, text, callback) {
+    message.message = text;
+    message.save((err, m) => {
+        if (err) return console.log("Message.update error: " + err);
         callback(m);
     });
 };
