@@ -1,11 +1,8 @@
 package passwordOpgave;
 
 import com.google.common.hash.Hashing;
-import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
 import org.bson.Document;
 
 import java.nio.charset.StandardCharsets;
@@ -16,14 +13,11 @@ public class Database {
 
     public void connect() {
         System.out.println("Connecting...");
-        MongoClient mongoClient = MongoClients.create("mongodb+srv://jonas:1234@dmu3-4gzrm.mongodb.net/dis21?retryWrites=true");
-        MongoDatabase mongoDatabase = mongoClient.getDatabase("dis21");
-        usersCollection = mongoDatabase.getCollection("user");
+        usersCollection = MongoClients.create("mongodb+srv://jonas:1234@dmu3-4gzrm.mongodb.net/dis21?retryWrites=true").getDatabase("dis21").getCollection("user");
     }
 
     public void addUser(String username, String password) {
-        String hashPass = hashString(password);
-        Document userDoc = new Document("username", username).append("password", hashPass);
+        Document userDoc = new Document("username", username).append("password", hashString(password));
         usersCollection.insertOne(userDoc);
     }
 
