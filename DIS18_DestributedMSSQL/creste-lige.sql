@@ -1,4 +1,5 @@
-USE destA
+USE lige
+GO
 
 DROP VIEW IF EXISTS AlleKunder
 DROP TABLE IF EXISTS Bestillinger
@@ -16,10 +17,10 @@ CREATE TABLE Bestillinger (
 	antalvare INT
 )
 
-INSERT INTO Kunder VALUES (0, 'Jan', '8260')
-INSERT INTO Kunder VALUES (2, 'Bones', '8220')
-INSERT INTO Kunder VALUES (4, 'Alexander', '8600')
-INSERT INTO Kunder VALUES (6, 'Kragen', '1100')
+INSERT INTO lige VALUES (0, 'Jan', '8260')
+INSERT INTO lige VALUES (2, 'Bones', '8220')
+INSERT INTO lige VALUES (4, 'Alexander', '8600')
+INSERT INTO lige VALUES (6, 'Kragen', '1100')
 
 INSERT INTO Bestillinger VALUES (0, 'Raspberry Pi 3B', 1)
 INSERT INTO Bestillinger VALUES (2, 'Apple iSmoke', 3)

@@ -1,3 +1,0 @@
-USE destA
-
-CREATE TABLE 
