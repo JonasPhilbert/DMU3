@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Prøveeksamen 3</title>
+    <script src="index.js" defer></script>
+</head>
+
+<body>
+    <ul>
+        {{#each users}}
+        <li data-id="{{this.id}}" data-phone="{{this.phone}}">{{this.name}}</li>
+        {{/each}}
+    </ul>
+    <input id="input" type="text" placeholder="Telefon Nr.">
+    <br>
+    <textarea id="address" cols="30" rows="10" placeholder="Adresse"></textarea>
+</body>
+
+</html>
