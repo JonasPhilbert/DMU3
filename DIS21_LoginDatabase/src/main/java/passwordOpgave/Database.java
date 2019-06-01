@@ -1,8 +1,8 @@
 package passwordOpgave;
 
-import com.google.common.hash.Hashing;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
+import com.google.common.hash.Hashing; // Google Guava
+import com.mongodb.client.MongoClients; // MongoDB Driver
+import com.mongodb.client.MongoCollection; // ...
 import org.bson.Document;
 
 import java.nio.charset.StandardCharsets;
